@@ -6,8 +6,10 @@ console.log('Client-side code running');
 //
 //
 // });
-function test(artistName){
-  fetch('/search-song/:searchedItem', {method: 'get'})
+function searchItem(){
+  var searchInput = document.getElementById('searchItem');
+
+  fetch('/search-song/'+ searchInput.value , {method: 'get'})
     .then(function(response) {
       if(response.ok) {
         console.log('ok');
