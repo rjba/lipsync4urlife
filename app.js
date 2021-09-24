@@ -17,10 +17,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.get('/test', (req, res) => {
-  res.sendFile(__dirname + '/views/test.html');
-});
-
 // //API CALLS
 // var options = {
 //   method: 'GET',
@@ -61,4 +57,5 @@ app.get('/search-song/:searchedItem', (req, res) => {
     console.error(error);
   });
 	res.sendStatus(201);
+
 });

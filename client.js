@@ -6,6 +6,7 @@ console.log('Client-side code running');
 //
 //
 // });
+
 fetch('/search-song/:searchedItem', {method: 'get'})
   .then(function(response) {
     if(response.ok) {
