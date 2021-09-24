@@ -1,8 +1,8 @@
 console.log('Server-side code running');
 
 var express = require("express")
-var template = require("./template")
 var app = express();
+var axios = require("axios").default;
 
 // serve files from the public directory
 app.use(express.static('./'));
@@ -12,17 +12,53 @@ app.listen(3000, () => {
   console.log('listening on 3000');
 });
 
-// serve the homepage
+// routes
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/views/index.html');
 });
 
-app.post('/clicked', (req, res) => {
-  var time = template.createResponse();
-	/*just to see if I send the data that I want
-  console.log(time.heure);
-  console.log(time.minute);
-	console.log(time);*/
-	res.send(time)
+app.get('/test', (req, res) => {
+  res.sendFile(__dirname + '/views/test.html');
+});
+
+// //API CALLS
+// var options = {
+//   method: 'GET',
+//   url: 'https://genius.p.rapidapi.com/search',
+//   params: {q: 'Kendrick Lamar'},
+//   headers: {
+//     'x-rapidapi-host': 'genius.p.rapidapi.com',
+//     'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
+//   }
+// };
+//
+// axios.request(options).then(function (response) {
+// 	console.log(response.data);
+// }).catch(function (error) {
+// 	console.error(error);
+// });
+
+app.get('/search-song/:searchedItem', (req, res) => {
+  console.log("ok");
+  console.log(req.params.searchedItem);
+
+  var searchedItem = req.params.searchedItem;
+
+  var options = {
+    method: 'GET',
+    url: 'https://genius.p.rapidapi.com/search',
+    params: {q: searchedItem},
+    headers: {
+      'x-rapidapi-host': 'genius.p.rapidapi.com',
+      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
+    }
+  };
+
+  axios.request(options).then(function (response) {
+    console.log(response.data);
+    res.send(response.data)
+  }).catch(function (error) {
+    console.error(error);
+  });
 	res.sendStatus(201);
 });
