@@ -17,23 +17,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-// //API CALLS
-// var options = {
-//   method: 'GET',
-//   url: 'https://genius.p.rapidapi.com/search',
-//   params: {q: 'Kendrick Lamar'},
-//   headers: {
-//     'x-rapidapi-host': 'genius.p.rapidapi.com',
-//     'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
-//   }
-// };
-//
-// axios.request(options).then(function (response) {
-// 	console.log(response.data);
-// }).catch(function (error) {
-// 	console.error(error);
-// });
-
 app.get('/search-song/:searchedItem', (req, res) => {
   console.log("ok");
   console.log(req.params.searchedItem);
@@ -53,9 +36,8 @@ app.get('/search-song/:searchedItem', (req, res) => {
   axios.request(options).then(function (response) {
     console.log(response.data);
     res.send(response.data)
+    res.sendStatus(201);
   }).catch(function (error) {
     console.error(error);
   });
-	res.sendStatus(201);
-
 });
