@@ -1,14 +1,16 @@
 {
-  "name": "node-js-sample",
+  "name": "lipsync4urLife",
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "node test.js",
     "start": "nodemon app.js"
   },
   "dependencies": {
     "axios": "^0.21.4",
     "express": "^4.17.1",
     "genius-lyrics": "^4.2.9",
-    "mustache": "^4.2.0"
+    "bootstrap": "^5.1.1",
+    "nodemon": "^2.0.13"
   }
 }

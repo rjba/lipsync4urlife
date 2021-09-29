@@ -9,13 +9,11 @@ if(searchButton){
     fetch('/search-song/'+ searchInput.value , {method: 'get'})
       .then(function(response) {
         if(response.ok) {
-          console.log('ok');
           return response.json();
         }
         throw new Error('Request failed.');
       })
       .then(function(data){
-        console.log(data.response.hits);
         var searchResults = data.response.hits;
         var searchResultsDiv = document.getElementById('results');
         searchResultsDiv.innerHTML = "";
@@ -23,7 +21,6 @@ if(searchButton){
           if(searchResults[searchResult].type === "song"
           && searchResults[searchResult].result.lyrics_state === "complete"){
 
-            console.log(searchResults[searchResult]);
             var songID = searchResults[searchResult].result.id;
 
             var songTitle = searchResults[searchResult].result.title;
@@ -42,7 +39,7 @@ if(searchButton){
         }
       })
       .catch(function(error) {
-        console.log(error);
+        return error;
       });
   });
 
@@ -52,18 +49,14 @@ if(searchButton){
 function getSongInfo(){
   var songID = window.location.search.substr(1);
 
-  console.log(songID);
-
   fetch('/get-info-on-song/'+ songID, {method: 'get'})
     .then(function(response) {
       if(response.ok) {
-        console.log('ok');
         return response.json();
       }
       throw new Error('Request failed.');
     })
     .then(function(data){
-      console.log(data);
       var songNameOutput = document.getElementById('songTitle');
       var artistNameOutput = document.getElementById('songArtist');
       var songImgOutput = document.getElementById('songImg');
@@ -92,12 +85,11 @@ function getSongInfo(){
 
     })
     .catch(function(error) {
-      console.log(error);
+      return error;
     });
 }
 
 function getArtistInfo(){
   var artistID = window.location.search.substr(1);
-
   console.log(artistID);
 }

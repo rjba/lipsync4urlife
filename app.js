@@ -1,5 +1,3 @@
-console.log('Server-side code running');
-
 var express = require("express")
 var app = express();
 var axios = require("axios").default;
@@ -13,7 +11,7 @@ app.use(express.static('./'));
 
 // start the express web server listening on 3000
 app.listen(3000, () => {
-  console.log('listening on 3000');
+  console.log('Server listening on 3000');
 });
 
 // routes
@@ -29,14 +27,14 @@ app.get('/artist', (req, res) => {
   res.sendFile(__dirname + '/views/artist.html');
 });
 
+
+
+
 // api requests
 /*
   search request to api to get search result
 */
 app.get('/search-song/:searchedItem', (req, res) => {
-  console.log("ok");
-  console.log(req.params.searchedItem);
-
   var searchedItem = req.params.searchedItem;
 
   var options = {
@@ -53,7 +51,7 @@ app.get('/search-song/:searchedItem', (req, res) => {
     res.send(response.data)
     res.sendStatus(201);
   }).catch(function (error) {
-    console.error(error);
+    res.sendStatus(404);
   });
 });
 
@@ -74,10 +72,8 @@ app.get('/get-info-on-song/:songID', (req, res) => {
 
   axios.request(options).then(async function (response) {
     var songID = response.data.response.song.id
-    console.log(songID);
 
     var lyrics = await getLyrics(songID);
-    console.log(lyrics);
 
     if(lyrics !== ""){
       res.send({
@@ -93,13 +89,16 @@ app.get('/get-info-on-song/:songID', (req, res) => {
       res.sendStatus(201);
     }
   }).catch(function (error) {
-  	console.error(error);
+    res.sendStatus(404);
   });
 });
 
 async function getLyrics(songID){
   const song = await Client.songs.get(songID);
-  const lyrics = await song.lyrics();
-  console.log(lyrics);
+  const lyrics = await song.lyrics().then(function(response){
+    return response;
+  }).catch(function(error){
+    return "";
+  });
   return lyrics;
 }
