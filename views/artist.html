@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../resources/stylesheets/main_css.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Lip sync 4 ur life</title>
 </head>
 <body>
@@ -29,9 +30,30 @@
       </ul>
     </div>
   </nav>
-  <div class="main-cotnainer">
-    <h1>INFO ARTIST</h1>
-      </div>
+  <div class="main-container">
+      <div class="artist-info-container">
+        <div class="artist-info-header">
+          <img id="artistImg" src="" alt="">
+          <div class="artist-info">
+            <h1 id="artistName"></h1>
+            <p>aka </p>
+            <p id="artistAlternateNames"></p>
+            </div>
+          </div>
+          <div class="infos">
+            <h3>A propos...</h3>
+            <p id="description"></p>
+            <input type="hidden" id="description-full" value=""/>
+            <a id="toggleButton" onclick="toggleText()">Voir plus</a>
+            <h3>Liens réseaux sociaux</h3>
+            <p id="instagram"></p>
+            <p id="facebook"></p>
+            <p id="twitter"></p>
+          </div>
+
+        </div>
+    </div>
+
     </body>
     <footer>
       <script type="text/javascript" src="./client.js"></script>
@@ -41,5 +63,22 @@
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="./client.js"></script>
+      <script>
+          var status = "less";
+
+          function toggleText()
+          {
+            if (status == "less") {
+              document.getElementById("description").innerText = document.getElementById("description-full").value;
+                document.getElementById("toggleButton").innerText = "Voir moins";
+                status = "more";
+            } else if (status == "more") {
+                document.getElementById("description").innerText = document.getElementById("description-full").value.substring(0,600) + "...";
+                document.getElementById("toggleButton").innerText = "Voir plus";
+                status = "less"
+            }
+          }
+      </script>
     </footer>
     </html>

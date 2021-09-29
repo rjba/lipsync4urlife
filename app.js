@@ -1,10 +1,12 @@
-var express = require("express")
+
+var express = require("express");
 var app = express();
 var axios = require("axios").default;
 
 //special node module installed to get lyrics
 const Genius = require("genius-lyrics");
 const Client = new Genius.Client("u14zRI3-FNvsIqw0QIIMDx9V7R0y8NkQGXha69ZSxs8jzzR3kx7ZRnHcLSUjVIus");
+
 
 // serve files from the public directory
 app.use(express.static('./'));
@@ -88,6 +90,28 @@ app.get('/get-info-on-song/:songID', (req, res) => {
       });
       res.sendStatus(201);
     }
+  }).catch(function (error) {
+    res.sendStatus(404);
+  });
+});
+
+app.get('/get-artist/:artistID', (req, res) => {
+  var artistID = req.params.artistID;
+
+  var options = {
+    method: 'GET',
+    url: 'https://genius.p.rapidapi.com/artists/' + artistID,
+    headers: {
+      'x-rapidapi-host': 'genius.p.rapidapi.com',
+      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
+    }
+  };
+
+  axios.request(options).then(async function (response) {
+    res.send({
+      data: response.data
+    });
+    res.sendStatus(201);
   }).catch(function (error) {
     res.sendStatus(404);
   });

@@ -23,6 +23,14 @@ nav a{
   justify-content: space-between;
 }
 
+.main-container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 5%;
+  justify-content: space-between;
+}
+
 .search-bar{
   display: flex;
   align-self: center;
@@ -86,7 +94,18 @@ nav a{
   justify-content: space-between;
 }
 
+.artist-info-container{
+  width: 80%;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .song-info-container img{
+  width: 350px;
+  height: 350px;
+}
+.artist-info-container img{
   width: 350px;
   height: 350px;
 }
@@ -104,10 +123,30 @@ nav a{
   margin-top: 3%;
 }
 
+.artist-info{
+  margin-top: 3%;
+}
+
 .lyrics{
   width: 60%;
 }
 
+.infos{
+  width: 60%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
 .lyrics p{
+  font-size: 18px;
+}
+
+.infos p{
+  font-size: 18px;
+}
+
+.infos a{
+  text-decoration: none;
+  color: #9AD1D4;
   font-size: 18px;
 }
