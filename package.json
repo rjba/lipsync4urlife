@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "mocha test.js --timeout 10000",
+    "test": "mocha test.js --timeout 10000 --exit",
     "start": "nodemon app.js"
   },
   "dependencies": {

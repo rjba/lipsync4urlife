@@ -1,5 +1,5 @@
 var app = require('./app');
-var request = require("supertest");
+var supertest = require("supertest");
 var assert = require('assert');
 
 /* Test pour voir que la recherche de chanson retourne bien
@@ -7,7 +7,7 @@ var assert = require('assert');
 */
 describe('GET /search-song/Kendrick Lamar', function() {
     it('responds with json', function(done) {
-        request(app)
+        supertest(app)
             .get('/search-song/Kendrick Lamar')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -23,7 +23,7 @@ describe('GET /search-song/Kendrick Lamar', function() {
 */
 describe('GET /get-info-on-song/5312186', function() {
     it('responds with json', function(done) {
-        request(app)
+        supertest(app)
             .get('/get-info-on-song/5312186')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
