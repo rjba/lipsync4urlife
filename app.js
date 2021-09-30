@@ -126,3 +126,5 @@ async function getLyrics(songID){
   });
   return lyrics;
 }
+
+module.exports = app;
