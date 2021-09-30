@@ -1,4 +1,3 @@
-
 console.log('Client-side code running');
 
 // event listeners
@@ -142,7 +141,6 @@ function getArtistInfo(){
       twitterOutput.innerHTML = "<a href=\"https://twitter.com/" + twitter + "\" class=\"fa fa-twitter\"> Son twitter </a>";
       facebookOutput.innerHTML = "<a href=\"https://facebook.com/" + facebook + "\" class=\"fa fa-facebook\"> Son facebook </a>";
 
-      console.log(data);
       return data;
     })
     .catch(function(error) {
