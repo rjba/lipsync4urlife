@@ -1,3 +1,4 @@
+
 console.log('Client-side code running');
 
 // event listeners
@@ -82,7 +83,6 @@ function getSongInfo(){
       }else{
         songLyricsOutput.innerText = "Aucunes paroles trouvées pour cette chanson" ;
       }
-
     })
     .catch(function(error) {
       return error;
@@ -91,5 +91,61 @@ function getSongInfo(){
 
 function getArtistInfo(){
   var artistID = window.location.search.substr(1);
-  console.log(artistID);
+
+  fetch('/get-artist/' + artistID, {method: 'get'})
+    .then(function(response) {
+      if(response.ok) {
+        return response.json();
+      }
+      throw new Error('Request failed.');
+    })
+    .then(function(data){
+
+      var artistImgOutput = document.getElementById('artistImg');
+      var artistAlternateNamesOutput = document.getElementById('artistAlternateNames');
+      var artistNameOutput = document.getElementById('artistName');
+      var descriptionOutput = document.getElementById('description');
+      var descriptionFullOutput = document.getElementById('description-full');
+      var instagramOutput = document.getElementById('instagram');
+      var twitterOutput = document.getElementById('twitter');
+      var facebookOutput = document.getElementById('facebook');
+
+      var artistImg = data.data.response.artist.image_url;
+      var artistName = data.data.response.artist.name;
+      var artistAlternateNames = data.data.response.artist.alternate_names;
+      var description = data.data.response.artist.description.dom.children;
+      var instagram = data.data.response.artist.instagram_name;
+      var twitter = data.data.response.artist.twitter_name;
+      var facebook = data.data.response.artist.facebook_name;
+
+      var descriptionStockage = "";
+      artistImgOutput.src = artistImg;
+      artistAlternateNamesOutput.innerText = artistAlternateNames.join(", \n ");
+      artistNameOutput.innerText = artistName;
+      for(var i = 0; i < description.length; i++) {
+        if(description[i] != "") var sous_description = description[i].children;
+        for(var j = 0; j < sous_description.length; j++) {
+            if (typeof sous_description[j] === 'string' || sous_description[j] instanceof String) {
+              descriptionStockage = descriptionStockage + sous_description[j];
+            } else {
+              if (typeof sous_description[j].children[0] === "string" || sous_description[j].children[0] instanceof String)
+                descriptionStockage = descriptionStockage + sous_description[j].children[0];
+              else
+                descriptionStockage = descriptionStockage + sous_description[j].children[0].children[0];
+            }
+        }
+      }
+      descriptionOutput.innerText = descriptionStockage.substring(0,600) + "...";
+      descriptionFullOutput.value = descriptionStockage;
+
+      instagramOutput.innerHTML = "<a href=\"https://instagram.com/" + instagram + "\" class=\"fa fa-instagram\"> Son instagram </a>";
+      twitterOutput.innerHTML = "<a href=\"https://twitter.com/" + twitter + "\" class=\"fa fa-twitter\"> Son twitter </a>";
+      facebookOutput.innerHTML = "<a href=\"https://facebook.com/" + facebook + "\" class=\"fa fa-facebook\"> Son facebook </a>";
+
+      console.log(data);
+      return data;
+    })
+    .catch(function(error) {
+      return error;
+    });
 }
