@@ -29,6 +29,10 @@ app.get('/artist', (req, res) => {
   res.sendFile(__dirname + '/views/artist.html');
 });
 
+app.get('/songs-of-artist', (req, res) => {
+  res.sendFile(__dirname + '/views/songs_of_artist.html');
+});
+
 
 
 
@@ -112,6 +116,28 @@ app.get('/get-artist/:artistID', (req, res) => {
       data: response.data
     });
     res.sendStatus(201);
+  }).catch(function (error) {
+    res.sendStatus(404);
+  });
+});
+
+app.get('/get-song-artist/:artistID', (req, res) => {
+  var artistID = req.params.artistID;
+
+  var options = {
+    method: 'GET',
+    url: 'https://genius.p.rapidapi.com/artists/'+artistID+'/songs',
+    headers: {
+      'x-rapidapi-host': 'genius.p.rapidapi.com',
+      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
+    }
+  };
+
+  axios.request(options).then(async function (response) {
+    res.send({
+      data: response.data
+    });
+    res.sendStatus(200);
   }).catch(function (error) {
     res.sendStatus(404);
   });

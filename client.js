@@ -147,3 +147,43 @@ function getArtistInfo(){
       return error;
     });
 }
+
+
+function getSongsArtist(){
+    var artistID = window.location.search.substr(1);
+    console.log(artistID);
+
+      fetch('/get-song-artist/' + artistID, {method: 'get'})
+        .then(function(response) {
+          if(response.ok) {
+            return response.json();
+          }
+          throw new Error('Request failed.');
+        })
+        .then(function(data){
+                    var listSongsArtist = data.data.response.songs;
+                    var searchResultsDiv = document.getElementById('list-songs');
+                    searchResultsDiv.innerHTML = "";
+                    for(let indexSong in listSongsArtist){
+
+                        console.log(listSongsArtist[indexSong]);
+                       var songID = listSongsArtist[indexSong].id;
+
+                        var songTitle = listSongsArtist[indexSong].title;
+                        var songArtistName = listSongsArtist[indexSong].primary_artist.name;
+                        var songImg = listSongsArtist[indexSong].song_art_image_url;
+
+
+                        searchResultsDiv.innerHTML = searchResultsDiv.innerHTML
+                        + "<div class=\"search-result\">"
+                        + "<img class=\"resultImg\" src=" + songImg +" alt=\"\">"
+                        + "<div class=\"sear-result-description\">"
+                        + "<h4>" + songTitle + "</h4>"
+                        + "<h6>" + songArtistName + "</h6></div></div>";
+                    }
+        }
+        )
+        .catch(function(error) {
+            return error;
+        });
+}
