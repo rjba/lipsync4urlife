@@ -111,7 +111,7 @@ app.get('/get-artist/:artistID', (req, res) => {
     res.send({
       data: response.data
     });
-    res.sendStatus(201);
+    res.sendStatus(200);
   }).catch(function (error) {
     res.sendStatus(404);
   });

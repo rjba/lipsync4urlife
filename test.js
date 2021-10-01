@@ -35,3 +35,19 @@ describe('GET /get-info-on-song/5312186', function() {
             .catch(err => done(err))
     });
 });
+
+
+
+/* Test pour voir que la recherche d'artiste sur id retourne
+  bien des informations sur un artiste
+  au format json et qu'on a une réponse succes
+*/
+describe('GET /get-artist/130', function() {
+    it('responds with json', function(done) {
+        supertest(app)
+            .get('/get-artist/130')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, done);
+    });
+});
