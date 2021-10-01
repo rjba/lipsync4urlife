@@ -36,6 +36,7 @@ describe('GET /get-info-on-song/5312186', function() {
     });
 });
 
+<<<<<<< HEAD
 /* Test pour voir que pour un artiste donnée
   on a bien une reponse 200 qui est retournée pour la liste
   des chansons retournée
@@ -48,5 +49,20 @@ describe('GET /get-song-artist/16775', function() {
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, done)
+=======
+
+
+/* Test pour voir que la recherche d'artiste sur id retourne
+  bien des informations sur un artiste
+  au format json et qu'on a une réponse succes
+*/
+describe('GET /get-artist/130', function() {
+    it('responds with json', function(done) {
+        supertest(app)
+            .get('/get-artist/130')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, done);
+>>>>>>> 682f9dbb1a87d4779e2a73550f38c90bdb8cea36
     });
 });
