@@ -1,3 +1,4 @@
+require('dotenv').config()
 
 var express = require("express");
 var app = express();
@@ -5,7 +6,7 @@ var axios = require("axios").default;
 
 //special node module installed to get lyrics
 const Genius = require("genius-lyrics");
-const Client = new Genius.Client("u14zRI3-FNvsIqw0QIIMDx9V7R0y8NkQGXha69ZSxs8jzzR3kx7ZRnHcLSUjVIus");
+const Client = new Genius.Client(process.env.GENIUS_CLIENT_KEY);
 
 
 // serve files from the public directory
@@ -45,7 +46,7 @@ app.get('/search-song/:searchedItem', (req, res) => {
     params: {q: searchedItem},
     headers: {
       'x-rapidapi-host': 'genius.p.rapidapi.com',
-      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
+      'x-rapidapi-key': process.env.RAPID_API_KEY
     }
   };
 
@@ -68,7 +69,7 @@ app.get('/get-info-on-song/:songID', (req, res) => {
     url: 'https://genius.p.rapidapi.com/songs/' + songID,
     headers: {
       'x-rapidapi-host': 'genius.p.rapidapi.com',
-      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
+      'x-rapidapi-key': process.env.RAPID_API_KEY
     }
   };
 
@@ -103,7 +104,7 @@ app.get('/get-artist/:artistID', (req, res) => {
     url: 'https://genius.p.rapidapi.com/artists/' + artistID,
     headers: {
       'x-rapidapi-host': 'genius.p.rapidapi.com',
-      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
+      'x-rapidapi-key': process.env.RAPID_API_KEY
     }
   };
 

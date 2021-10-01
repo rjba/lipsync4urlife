@@ -35,3 +35,18 @@ describe('GET /get-info-on-song/5312186', function() {
             .catch(err => done(err))
     });
 });
+
+/* Test pour voir que pour un artiste donnée
+  on a bien une reponse 200 qui est retournée.
+  Que les données sont bien au format json.
+*/
+describe('GET /get-song-artist/16775', function() {
+    it('responds with json', function(done) {
+        supertest(app)
+            .get('/get-info-on-song/16775')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .catch(err => done(err))
+    });
+});
