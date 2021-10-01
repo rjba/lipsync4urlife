@@ -30,6 +30,13 @@ app.get('/artist', (req, res) => {
   res.sendFile(__dirname + '/views/artist.html');
 });
 
+app.get('/songs-of-artist', (req, res) => {
+  res.sendFile(__dirname + '/views/songs_of_artist.html');
+});
+
+
+
+
 // api requests
 /*
   search request to api to get search result
@@ -43,13 +50,13 @@ app.get('/search-song/:searchedItem', (req, res) => {
     params: {q: searchedItem},
     headers: {
       'x-rapidapi-host': 'genius.p.rapidapi.com',
-      'x-rapidapi-key': process.env.RAPID_API_KEY
+      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
     }
   };
 
   axios.request(options).then(function (response) {
     res.send(response.data)
-    res.sendStatus(200);
+    res.sendStatus(201);
   }).catch(function (error) {
     res.sendStatus(404);
   });
@@ -66,7 +73,7 @@ app.get('/get-info-on-song/:songID', (req, res) => {
     url: 'https://genius.p.rapidapi.com/songs/' + songID,
     headers: {
       'x-rapidapi-host': 'genius.p.rapidapi.com',
-      'x-rapidapi-key': process.env.RAPID_API_KEY
+      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
     }
   };
 
@@ -80,13 +87,13 @@ app.get('/get-info-on-song/:songID', (req, res) => {
         data: response.data,
         song_lyrics: lyrics
       });
-      res.sendStatus(200);
+      res.sendStatus(201);
     }else{
       res.send({
         data: response.data,
         song_lyrics: ""
       });
-      res.sendStatus(200);
+      res.sendStatus(201);
     }
   }).catch(function (error) {
     res.sendStatus(404);
@@ -101,7 +108,29 @@ app.get('/get-artist/:artistID', (req, res) => {
     url: 'https://genius.p.rapidapi.com/artists/' + artistID,
     headers: {
       'x-rapidapi-host': 'genius.p.rapidapi.com',
-      'x-rapidapi-key': process.env.RAPID_API_KEY
+      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
+    }
+  };
+
+  axios.request(options).then(async function (response) {
+    res.send({
+      data: response.data
+    });
+    res.sendStatus(201);
+  }).catch(function (error) {
+    res.sendStatus(404);
+  });
+});
+
+app.get('/get-song-artist/:artistID', (req, res) => {
+  var artistID = req.params.artistID;
+
+  var options = {
+    method: 'GET',
+    url: 'https://genius.p.rapidapi.com/artists/'+artistID+'/songs',
+    headers: {
+      'x-rapidapi-host': 'genius.p.rapidapi.com',
+      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
     }
   };
 
