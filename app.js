@@ -30,9 +30,6 @@ app.get('/artist', (req, res) => {
   res.sendFile(__dirname + '/views/artist.html');
 });
 
-
-
-
 // api requests
 /*
   search request to api to get search result

@@ -37,7 +37,8 @@ describe('GET /get-info-on-song/5312186', function() {
 });
 
 /* Test pour voir que pour un artiste donnée
-  on a bien une reponse 200 qui est retournée.
+  on a bien une reponse 200 qui est retournée pour la liste
+  des chansons retournée
   Que les données sont bien au format json.
 */
 describe('GET /get-song-artist/16775', function() {
@@ -46,7 +47,6 @@ describe('GET /get-song-artist/16775', function() {
             .get('/get-info-on-song/16775')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
-            .expect(200)
-            .catch(err => done(err))
+            .expect(200, done)
     });
 });
