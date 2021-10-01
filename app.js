@@ -51,7 +51,7 @@ app.get('/search-song/:searchedItem', (req, res) => {
 
   axios.request(options).then(function (response) {
     res.send(response.data)
-    res.sendStatus(201);
+    res.sendStatus(200);
   }).catch(function (error) {
     res.sendStatus(404);
   });
@@ -82,13 +82,13 @@ app.get('/get-info-on-song/:songID', (req, res) => {
         data: response.data,
         song_lyrics: lyrics
       });
-      res.sendStatus(201);
+      res.sendStatus(200);
     }else{
       res.send({
         data: response.data,
         song_lyrics: ""
       });
-      res.sendStatus(201);
+      res.sendStatus(200);
     }
   }).catch(function (error) {
     res.sendStatus(404);
@@ -111,7 +111,7 @@ app.get('/get-artist/:artistID', (req, res) => {
     res.send({
       data: response.data
     });
-    res.sendStatus(201);
+    res.sendStatus(200);
   }).catch(function (error) {
     res.sendStatus(404);
   });
