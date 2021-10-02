@@ -53,12 +53,12 @@ jobs:
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
+        env:
+            GENIUS_CLIENT_KEY : ${{ secrets.GENIUS_CLIENT_KEY }}
+            RAPID_API_KEY : ${{ secrets.RAPID_API_KEY }}
         with:
           context: ./
           file: ./Dockerfile
-          secrets: |
-            "GENIUS_CLIENT_KEY=${{ secrets.GENIUS_CLIENT_KEY }}"
-            "RAPID_API_KEY=${{ secrets.RAPID_API_KEY }}"
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/lipsync4urlife:release
 
