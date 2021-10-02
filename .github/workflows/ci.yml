@@ -29,6 +29,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - env:
+          CI: true
           GENIUS_CLIENT_KEY: ${{ secrets.GENIUS_CLIENT_KEY }}
           RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
     - run: npm test
