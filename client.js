@@ -90,7 +90,7 @@ function getSongInfo(){
 
 function getArtistInfo(){
   var artistID = window.location.search.substr(1);
-var url = "./songs-of-artist?" + artistID;
+  var url = "./songs-of-artist?" + artistID;
   var divLinkSongs = document.getElementById('linkSongOfArtist');
   divLinkSongs.innerHTML = "<a href="+ url + ">La liste de leurs sons</a>";
 
@@ -175,14 +175,14 @@ function getSongsArtist(){
                         var songTitle = listSongsArtist[indexSong].title;
                         var songArtistName = listSongsArtist[indexSong].primary_artist.name;
                         var songImg = listSongsArtist[indexSong].song_art_image_url;
-
+                        var songLyricsUrl = "/info-on-song?" + songID;
 
                         searchResultsDiv.innerHTML = searchResultsDiv.innerHTML
-                        + "<div class=\"search-result\">"
+                        + "<a class=\"songs-artist-result\" href="+ songLyricsUrl +">"
                         + "<img class=\"resultImg\" src=" + songImg +" alt=\"\">"
                         + "<div class=\"sear-result-description\">"
                         + "<h4>" + songTitle + "</h4>"
-                        + "<h6>" + songArtistName + "</h6></div></div>";
+                        + "<h6>" + songArtistName + "</h6></div></a>";
                     }
         }
         )
