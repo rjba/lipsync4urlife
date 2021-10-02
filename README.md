@@ -7,11 +7,11 @@ Application utilisant l'API de Genius pour rechercher et trouver des paroles de 
 3. la liste des chansons de chaque artiste: toutes les chansons répertoriées sur le site de Genius pour un artiste donné
 
 Pour lancer l'application deux choix: 
-1. Cloner le projet depuis ce github.
-  a. définissez un .env où vous définirrez les clés d'api nécessaire
-  b. Dans le répertoire de l'application clonée, en ligne de commande, executer "npm install" pour installer tous les packets nécessaires au fonctionnement de l'application.
-  c. Puis executer "npm start". L'application sera accessible sur le port 3000 en local, localhost:3000 dans un navigateur.
-  d. Pour lancer les tests, dans le répertoire de l'application, en ligne de commande, executer "npm test". 
+1. Cloner le projet depuis ce github.("/")
+  a. définissez un .env où vous définirrez les clés d'api nécessaire("/")
+  b. Dans le répertoire de l'application clonée, en ligne de commande, executer "npm install" pour installer tous les packets nécessaires au fonctionnement de l'application.("/")
+  c. Puis executer "npm start". L'application sera accessible sur le port 3000 en local, localhost:3000 dans un navigateur.("/")
+  d. Pour lancer les tests, dans le répertoire de l'application, en ligne de commande, executer "npm test". ("/")
 2. Récuppérer sur le dockerhub l'image de notre application : https://hub.docker.com/repository/docker/rjba/lipsync4urlife
   a. Au runtime du container, ajouter en variables d'environnements les clés d'api avec les noms suivants RAPID_API_KEY et GENIUS_CLIENT_KEY ("/")
   b. voici la commande à passer pour lancer l'image ("/")
