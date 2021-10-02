@@ -130,7 +130,7 @@ app.get('/get-song-artist/:artistID', (req, res) => {
     url: 'https://genius.p.rapidapi.com/artists/'+artistID+'/songs',
     headers: {
       'x-rapidapi-host': 'genius.p.rapidapi.com',
-      'x-rapidapi-key': 'e17c302178mshe693526e422e203p1a1cedjsn49af64fb3e36'
+      'x-rapidapi-key': 'process.env.RAPID_API_KEY'
     }
   };
 
