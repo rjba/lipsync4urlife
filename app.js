@@ -144,6 +144,28 @@ app.get('/get-song-artist/:artistID', (req, res) => {
   });
 });
 
+app.get('/get-song-artist/:artistID', (req, res) => {
+  var artistID = req.params.artistID;
+
+  var options = {
+    method: 'GET',
+    url: 'https://genius.p.rapidapi.com/artists/'+artistID+'/songs',
+    headers: {
+      'x-rapidapi-host': 'genius.p.rapidapi.com',
+      'x-rapidapi-key': 'process.env.RAPID_API_KEY'
+    }
+  };
+
+  axios.request(options).then(async function (response) {
+    res.send({
+      data: response.data
+    });
+    res.sendStatus(200);
+  }).catch(function (error) {
+    res.sendStatus(404);
+  });
+});
+
 async function getLyrics(songID){
   const song = await Client.songs.get(songID);
   const lyrics = await song.lyrics().then(function(response){
