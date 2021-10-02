@@ -11,7 +11,8 @@ Pour lancer l'application deux choix:
   a. Définissez un .env où vous définirez les clés d'api nécessaire. Vous mettrez dans ce fichier les clés avec leur noms respectifs:  
     RAPID_API_KEY=valeur_cle  
     GENIUS_CLIENT_KEY=valeur_cle  
-  b. Dans le répertoire de l'application clonée, en ligne de commande, executer "npm install" pour installer tous les packets nécessaires au fonctionnement de l'application.     c. Puis executer "npm start". L'application sera accessible sur le port 3000 en local, localhost:3000 dans un navigateur.  
+  b. Dans le répertoire de l'application clonée, en ligne de commande, executer "npm install" pour installer tous les packets nécessaires au fonctionnement de l'application.  
+  c. Puis executer "npm start". L'application sera accessible sur le port 3000 en local, localhost:3000 dans un navigateur.  
   d. Pour lancer les tests, dans le répertoire de l'application, en ligne de commande, executer "npm test".  
 2. Récuppérer sur le dockerhub l'image de notre application : https://hub.docker.com/repository/docker/rjba/lipsync4urlife
   a. Au runtime du container, ajouter en variables d'environnements les clés d'api avec les noms suivants RAPID_API_KEY et GENIUS_CLIENT_KEY  
