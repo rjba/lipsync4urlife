@@ -90,6 +90,9 @@ function getSongInfo(){
 
 function getArtistInfo(){
   var artistID = window.location.search.substr(1);
+var url = "./songs-of-artist?" + artistID;
+  var divLinkSongs = document.getElementById('linkSongOfArtist');
+  divLinkSongs.innerHTML = "<a href="+ url + ">La liste de leurs sons</a>";
 
   fetch('/get-artist/' + artistID, {method: 'get'})
     .then(function(response) {
