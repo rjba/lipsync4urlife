@@ -12,6 +12,7 @@ nav a{
 
 a:hover{
   text-decoration: none;
+  color: #9AD1D4;
 }
 
 #logo{
@@ -177,12 +178,16 @@ a:hover{
   margin-bottom: 5%;
 }
 
-.songs-artist-result{
+.songs-a-result{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   color: black;
   margin-bottom: 5%;
+}
+
+.songs-a-result :hover{
+  color: #9AD1D4;
 }
 
 .sear-result-description{

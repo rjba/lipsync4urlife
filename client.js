@@ -154,8 +154,6 @@ function getArtistInfo(){
 
 function getSongsArtist(){
     var artistID = window.location.search.substr(1);
-    console.log(artistID);
-
       fetch('/get-song-artist/' + artistID, {method: 'get'})
         .then(function(response) {
           if(response.ok) {
@@ -169,7 +167,6 @@ function getSongsArtist(){
                     searchResultsDiv.innerHTML = "";
                     for(let indexSong in listSongsArtist){
 
-                        console.log(listSongsArtist[indexSong]);
                        var songID = listSongsArtist[indexSong].id;
 
                         var songTitle = listSongsArtist[indexSong].title;
@@ -178,7 +175,7 @@ function getSongsArtist(){
                         var songLyricsUrl = "/info-on-song?" + songID;
 
                         searchResultsDiv.innerHTML = searchResultsDiv.innerHTML
-                        + "<a class=\"songs-artist-result\" href="+ songLyricsUrl +">"
+                        + "<a class=\"songs-a-result\" href="+ songLyricsUrl +">"
                         + "<img class=\"resultImg\" src=" + songImg +" alt=\"\">"
                         + "<div class=\"sear-result-description\">"
                         + "<h4>" + songTitle + "</h4>"
